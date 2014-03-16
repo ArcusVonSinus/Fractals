@@ -24,6 +24,16 @@ namespace Fraktaly_2._0
             vykreslenyFraktal = new Sier((int)(numericUpDown1.Value));
 
         }
+
+        private void sierpinskiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            JmenoFraktalu.Text = "Sierpinski";
+        }
+
+        private void kochToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            JmenoFraktalu.Text = "Koch";
+        }
     }
     public class Fractal
     {
