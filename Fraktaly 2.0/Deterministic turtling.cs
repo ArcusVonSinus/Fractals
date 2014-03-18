@@ -207,4 +207,83 @@ namespace Fraktaly_2._0
             pb.Refresh();
         }
     }
+    class Cross : Turtle
+    {
+        Bitmap bmp;
+        int depth = 0;
+        int width = 0, height = 0;
+
+        public Cross()
+        {
+            P = 3f*Math.PI/2f;
+            L = Math.PI/2f;
+        }
+        void drawRek(int dept, int toc)
+        {
+            if (dept >= depth)
+            {
+                krok(bmp);
+                if (toc == 1)
+                    tocL();
+                else
+                    tocP();
+            }
+            else
+            {
+                if (toc == 2)
+                {
+                    drawRek(dept + 1, 2);
+                    drawRek(dept + 1, 1);
+                    drawRek(dept + 1, 2);
+                }
+                else
+                {
+                    drawRek(dept + 1, 2);
+                    drawRek(dept + 1, 1);
+                    drawRek(dept + 1, 1);
+                    drawRek(dept + 1, 1);
+                    drawRek(dept + 1, 2);
+                }
+            }
+        }
+        public override void vykresli(PictureBox pb, int hloubka)
+        {
+            if(depth!=hloubka||width !=pb.Width || height!=pb.Height)
+            {
+                depth = hloubka;
+                width = pb.Width;
+                height = pb.Height;
+
+                bmp = new Bitmap(pb.Width, pb.Height);
+                pb.Image = bmp;
+                using (Graphics gfx = Graphics.FromImage(bmp))
+                using (SolidBrush brush = new SolidBrush(Barvy.pozadi))
+                {
+                    gfx.FillRectangle(brush, 0, 0, pb.Width, pb.Height);
+                }
+                smer = 0;
+                double sirka;
+                double coef = Math.Pow(2f,depth+1);
+                coef-=1;
+                if(width<height)
+                    sirka=width-40;
+                else
+                    sirka = height-40;
+                delkakroku=sirka/coef;
+
+                poloha.X=20f+(float)((Math.Pow(2f,hloubka)-1)*delkakroku);
+                poloha.Y=20;
+            }
+            else
+            {
+                pb.Image = bmp;
+            }
+            pb.Refresh();
+
+        }
+    }
+    
+    
+
+
 }

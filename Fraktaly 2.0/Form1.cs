@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Fraktaly_2._0
 {
-    public enum FractalType { sierpinski,koch,hilbert}
+    public enum FractalType { sierpinski,koch,hilbert,cross} //NEWFRACTAL
     public partial class Form1 : Form
     {
         public Fractal vykreslenyFraktal;
@@ -24,26 +24,33 @@ namespace Fraktaly_2._0
                 {
                     p.Visible = false;
                 }
+                panely[(int)value].Visible = true;
                 switch(value)
                 {
                     case FractalType.sierpinski:
                         {
-                            panel_sier.Visible = true;
+                            
                             JmenoFraktalu.Text = "Sierpinski";
                             break;
                         }
                     case FractalType.koch:
                         {
-                            panel_koch.Visible = true;
+                            
                             JmenoFraktalu.Text = "Koch";
                             break;
                         }
                     case FractalType.hilbert:
                         {
-                            panel_hilbert.Visible = true;
+                            
                             JmenoFraktalu.Text = "Hilbert";
                             break;
                         }
+                    case FractalType.cross:
+                        {
+                            
+                            JmenoFraktalu.Text = "Cross";
+                            break;
+                        } //NEWFRACTAL
 
                     default:
                         {
@@ -64,6 +71,8 @@ namespace Fraktaly_2._0
             panely[0] = panel_sier;
             panely[1] = panel_koch;
             panely[2] = panel_hilbert;
+            panely[3] = panel_hilbert;
+            //NEWFRACTAL
 
             foreach(Panel p in panely)
             {
@@ -108,6 +117,17 @@ namespace Fraktaly_2._0
                         }
                         break;
                     }
+                case FractalType.cross:
+                    {
+                        vykreslenyFraktal.vykresli(pictureBox1, (int)(numericUpDown4.Value));
+                        if (sender != null)
+                        {
+                            if (numericUpDown4.Value < numericUpDown4.Maximum)
+                                numericUpDown4.Value++;
+                        }
+                        break;
+                    }
+                    //NEWFRACTAL
             }
 
         }
@@ -152,6 +172,11 @@ namespace Fraktaly_2._0
                         vykreslenyFraktal = new Hilbert();
                         break;
                     }
+                case FractalType.cross:
+                    {
+                        vykreslenyFraktal = new Cross();
+                        break;
+                    }//NEWFRACTAL
 
             }
             button1_Click(null, null);
@@ -177,6 +202,16 @@ namespace Fraktaly_2._0
             Barvy.pozadi = System.Drawing.ColorTranslator.FromHtml("#2b2b2b");
             Barvy.popredi = System.Drawing.ColorTranslator.FromHtml("#519f50");
             reloadfrac();
+        }
+
+        private void crossToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (typVykreslenehoFraktalu != FractalType.cross)
+            {
+                typVykreslenehoFraktalu = FractalType.cross;
+                vykreslenyFraktal = new Cross();
+                button1_Click(null, null);
+            }
         }
 
         

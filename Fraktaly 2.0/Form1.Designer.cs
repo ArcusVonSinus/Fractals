@@ -35,6 +35,7 @@
             this.fractalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sierpinskiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kochToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hilbertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bWToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.greenWhiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,10 +47,10 @@
             this.panel_sier = new System.Windows.Forms.Panel();
             this.panel_koch = new System.Windows.Forms.Panel();
             this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.hilbertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel_hilbert = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
+            this.crossToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -138,7 +139,8 @@
             this.fractalToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sierpinskiToolStripMenuItem,
             this.kochToolStripMenuItem,
-            this.hilbertToolStripMenuItem});
+            this.hilbertToolStripMenuItem,
+            this.crossToolStripMenuItem});
             this.fractalToolStripMenuItem.Name = "fractalToolStripMenuItem";
             this.fractalToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.fractalToolStripMenuItem.Text = "Fractal";
@@ -159,6 +161,13 @@
             this.kochToolStripMenuItem.Text = "Koch";
             this.kochToolStripMenuItem.Click += new System.EventHandler(this.kochToolStripMenuItem_Click);
             // 
+            // hilbertToolStripMenuItem
+            // 
+            this.hilbertToolStripMenuItem.Name = "hilbertToolStripMenuItem";
+            this.hilbertToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.hilbertToolStripMenuItem.Text = "Hilbert";
+            this.hilbertToolStripMenuItem.Click += new System.EventHandler(this.hilbertToolStripMenuItem_Click);
+            // 
             // colorsToolStripMenuItem
             // 
             this.colorsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -171,14 +180,14 @@
             // bWToolStripMenuItem
             // 
             this.bWToolStripMenuItem.Name = "bWToolStripMenuItem";
-            this.bWToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.bWToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.bWToolStripMenuItem.Text = "B&&W";
             this.bWToolStripMenuItem.Click += new System.EventHandler(this.bWToolStripMenuItem_Click);
             // 
             // greenWhiteToolStripMenuItem
             // 
             this.greenWhiteToolStripMenuItem.Name = "greenWhiteToolStripMenuItem";
-            this.greenWhiteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.greenWhiteToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.greenWhiteToolStripMenuItem.Text = "Green/White";
             this.greenWhiteToolStripMenuItem.Click += new System.EventHandler(this.greenWhiteToolStripMenuItem_Click);
             // 
@@ -314,13 +323,6 @@
             0,
             0});
             // 
-            // hilbertToolStripMenuItem
-            // 
-            this.hilbertToolStripMenuItem.Name = "hilbertToolStripMenuItem";
-            this.hilbertToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.hilbertToolStripMenuItem.Text = "Hilbert";
-            this.hilbertToolStripMenuItem.Click += new System.EventHandler(this.hilbertToolStripMenuItem_Click);
-            // 
             // panel_hilbert
             // 
             this.panel_hilbert.Controls.Add(this.label4);
@@ -369,6 +371,13 @@
             0,
             0,
             0});
+            // 
+            // crossToolStripMenuItem
+            // 
+            this.crossToolStripMenuItem.Name = "crossToolStripMenuItem";
+            this.crossToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.crossToolStripMenuItem.Text = "Cross";
+            this.crossToolStripMenuItem.Click += new System.EventHandler(this.crossToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -427,6 +436,7 @@
         private System.Windows.Forms.Panel panel_hilbert;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown numericUpDown4;
+        private System.Windows.Forms.ToolStripMenuItem crossToolStripMenuItem;
     }
 }
 
