@@ -36,9 +36,13 @@
             this.sierpinskiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kochToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hilbertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.crossToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sierpinskisCurveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.apollonianToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bWToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.greenWhiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.JmenoFraktalu = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -50,7 +54,19 @@
             this.panel_hilbert = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
-            this.crossToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel_apoll = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.backgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.foregroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.zMatrixToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel_all = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.label6 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
+            this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -60,6 +76,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             this.panel_hilbert.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
+            this.panel_apoll.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
+            this.panel_all.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -72,9 +93,10 @@
             this.pictureBox1.Location = new System.Drawing.Point(210, 34);
             this.pictureBox1.MinimumSize = new System.Drawing.Size(100, 100);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(794, 692);
+            this.pictureBox1.Size = new System.Drawing.Size(1095, 697);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // button1
             // 
@@ -86,7 +108,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Helvetica World", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button1.Location = new System.Drawing.Point(9, 674);
+            this.button1.Location = new System.Drawing.Point(9, 679);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(191, 52);
             this.button1.TabIndex = 1;
@@ -130,7 +152,7 @@
             this.colorsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1016, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1317, 24);
             this.menuStrip1.TabIndex = 5;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -140,7 +162,10 @@
             this.sierpinskiToolStripMenuItem,
             this.kochToolStripMenuItem,
             this.hilbertToolStripMenuItem,
-            this.crossToolStripMenuItem});
+            this.crossToolStripMenuItem,
+            this.sierpinskisCurveToolStripMenuItem,
+            this.apollonianToolStripMenuItem,
+            this.zMatrixToolStripMenuItem});
             this.fractalToolStripMenuItem.Name = "fractalToolStripMenuItem";
             this.fractalToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.fractalToolStripMenuItem.Text = "Fractal";
@@ -150,29 +175,51 @@
             this.sierpinskiToolStripMenuItem.Image = global::Fraktaly_2._0.Properties.Resources.icon;
             this.sierpinskiToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.White;
             this.sierpinskiToolStripMenuItem.Name = "sierpinskiToolStripMenuItem";
-            this.sierpinskiToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sierpinskiToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.sierpinskiToolStripMenuItem.Text = "Sierpinski";
             this.sierpinskiToolStripMenuItem.Click += new System.EventHandler(this.sierpinskiToolStripMenuItem_Click);
             // 
             // kochToolStripMenuItem
             // 
             this.kochToolStripMenuItem.Name = "kochToolStripMenuItem";
-            this.kochToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.kochToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.kochToolStripMenuItem.Text = "Koch";
             this.kochToolStripMenuItem.Click += new System.EventHandler(this.kochToolStripMenuItem_Click);
             // 
             // hilbertToolStripMenuItem
             // 
             this.hilbertToolStripMenuItem.Name = "hilbertToolStripMenuItem";
-            this.hilbertToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.hilbertToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.hilbertToolStripMenuItem.Text = "Hilbert";
             this.hilbertToolStripMenuItem.Click += new System.EventHandler(this.hilbertToolStripMenuItem_Click);
+            // 
+            // crossToolStripMenuItem
+            // 
+            this.crossToolStripMenuItem.Name = "crossToolStripMenuItem";
+            this.crossToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.crossToolStripMenuItem.Text = "Cross";
+            this.crossToolStripMenuItem.Click += new System.EventHandler(this.crossToolStripMenuItem_Click);
+            // 
+            // sierpinskisCurveToolStripMenuItem
+            // 
+            this.sierpinskisCurveToolStripMenuItem.Name = "sierpinskisCurveToolStripMenuItem";
+            this.sierpinskisCurveToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.sierpinskisCurveToolStripMenuItem.Text = "Sierpinski\'s curve";
+            this.sierpinskisCurveToolStripMenuItem.Click += new System.EventHandler(this.sierpinskisCurveToolStripMenuItem_Click);
+            // 
+            // apollonianToolStripMenuItem
+            // 
+            this.apollonianToolStripMenuItem.Name = "apollonianToolStripMenuItem";
+            this.apollonianToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.apollonianToolStripMenuItem.Text = "Apollonian";
+            this.apollonianToolStripMenuItem.Click += new System.EventHandler(this.apollonianToolStripMenuItem_Click);
             // 
             // colorsToolStripMenuItem
             // 
             this.colorsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bWToolStripMenuItem,
-            this.greenWhiteToolStripMenuItem});
+            this.greenWhiteToolStripMenuItem,
+            this.customToolStripMenuItem});
             this.colorsToolStripMenuItem.Name = "colorsToolStripMenuItem";
             this.colorsToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.colorsToolStripMenuItem.Text = "Colors";
@@ -180,16 +227,25 @@
             // bWToolStripMenuItem
             // 
             this.bWToolStripMenuItem.Name = "bWToolStripMenuItem";
-            this.bWToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.bWToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.bWToolStripMenuItem.Text = "B&&W";
             this.bWToolStripMenuItem.Click += new System.EventHandler(this.bWToolStripMenuItem_Click);
             // 
             // greenWhiteToolStripMenuItem
             // 
             this.greenWhiteToolStripMenuItem.Name = "greenWhiteToolStripMenuItem";
-            this.greenWhiteToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.greenWhiteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.greenWhiteToolStripMenuItem.Text = "Green/White";
             this.greenWhiteToolStripMenuItem.Click += new System.EventHandler(this.greenWhiteToolStripMenuItem_Click);
+            // 
+            // customToolStripMenuItem
+            // 
+            this.customToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.backgroundToolStripMenuItem,
+            this.foregroundToolStripMenuItem});
+            this.customToolStripMenuItem.Name = "customToolStripMenuItem";
+            this.customToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.customToolStripMenuItem.Text = "Custom";
             // 
             // label1
             // 
@@ -281,7 +337,7 @@
             this.panel_sier.Controls.Add(this.numericUpDown1);
             this.panel_sier.Controls.Add(this.label2);
             this.panel_sier.Controls.Add(this.numericUpDown2);
-            this.panel_sier.Location = new System.Drawing.Point(224, 44);
+            this.panel_sier.Location = new System.Drawing.Point(228, 44);
             this.panel_sier.Name = "panel_sier";
             this.panel_sier.Size = new System.Drawing.Size(190, 568);
             this.panel_sier.TabIndex = 11;
@@ -307,21 +363,11 @@
             0,
             0,
             0});
-            this.numericUpDown3.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.numericUpDown3.Name = "numericUpDown3";
             this.numericUpDown3.Size = new System.Drawing.Size(190, 39);
             this.numericUpDown3.TabIndex = 10;
             this.numericUpDown3.Tag = "sier";
             this.numericUpDown3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numericUpDown3.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             // 
             // panel_hilbert
             // 
@@ -341,7 +387,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(190, 50);
             this.label4.TabIndex = 10;
-            this.label4.Text = "Number of steps:H";
+            this.label4.Text = "Number of steps:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // numericUpDown4
@@ -356,35 +402,207 @@
             0,
             0,
             0});
-            this.numericUpDown4.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.numericUpDown4.Name = "numericUpDown4";
             this.numericUpDown4.Size = new System.Drawing.Size(190, 39);
             this.numericUpDown4.TabIndex = 10;
             this.numericUpDown4.Tag = "sier";
             this.numericUpDown4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numericUpDown4.Value = new decimal(new int[] {
-            1,
+            // 
+            // panel_apoll
+            // 
+            this.panel_apoll.Controls.Add(this.label5);
+            this.panel_apoll.Controls.Add(this.numericUpDown5);
+            this.panel_apoll.Location = new System.Drawing.Point(816, 44);
+            this.panel_apoll.Name = "panel_apoll";
+            this.panel_apoll.Size = new System.Drawing.Size(190, 568);
+            this.panel_apoll.TabIndex = 12;
+            // 
+            // label5
+            // 
+            this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
+            this.label5.Font = new System.Drawing.Font("Helvetica World", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(194)))), ((int)(((byte)(97)))));
+            this.label5.Location = new System.Drawing.Point(0, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(190, 50);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Number of circles:";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            // 
+            // numericUpDown5
+            // 
+            this.numericUpDown5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
+            this.numericUpDown5.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.numericUpDown5.Font = new System.Drawing.Font("Mensch", 23F);
+            this.numericUpDown5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(194)))), ((int)(((byte)(97)))));
+            this.numericUpDown5.Increment = new decimal(new int[] {
+            20000,
+            0,
+            0,
+            0});
+            this.numericUpDown5.Location = new System.Drawing.Point(0, 50);
+            this.numericUpDown5.Maximum = new decimal(new int[] {
+            5000000,
+            0,
+            0,
+            0});
+            this.numericUpDown5.Minimum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numericUpDown5.Name = "numericUpDown5";
+            this.numericUpDown5.Size = new System.Drawing.Size(190, 39);
+            this.numericUpDown5.TabIndex = 10;
+            this.numericUpDown5.Tag = "sier";
+            this.numericUpDown5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numericUpDown5.Value = new decimal(new int[] {
+            10000,
             0,
             0,
             0});
             // 
-            // crossToolStripMenuItem
+            // backgroundToolStripMenuItem
             // 
-            this.crossToolStripMenuItem.Name = "crossToolStripMenuItem";
-            this.crossToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.crossToolStripMenuItem.Text = "Cross";
-            this.crossToolStripMenuItem.Click += new System.EventHandler(this.crossToolStripMenuItem_Click);
+            this.backgroundToolStripMenuItem.Name = "backgroundToolStripMenuItem";
+            this.backgroundToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.backgroundToolStripMenuItem.Text = "Background";
+            this.backgroundToolStripMenuItem.Click += new System.EventHandler(this.backgroundToolStripMenuItem_Click);
+            // 
+            // foregroundToolStripMenuItem
+            // 
+            this.foregroundToolStripMenuItem.Name = "foregroundToolStripMenuItem";
+            this.foregroundToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.foregroundToolStripMenuItem.Text = "Foreground";
+            this.foregroundToolStripMenuItem.Click += new System.EventHandler(this.foregroundToolStripMenuItem_Click);
+            // 
+            // zMatrixToolStripMenuItem
+            // 
+            this.zMatrixToolStripMenuItem.Name = "zMatrixToolStripMenuItem";
+            this.zMatrixToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.zMatrixToolStripMenuItem.Text = "Z matrix";
+            this.zMatrixToolStripMenuItem.Click += new System.EventHandler(this.zMatrixToolStripMenuItem_Click);
+            // 
+            // panel_all
+            // 
+            this.panel_all.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel_all.Controls.Add(this.numericUpDown6);
+            this.panel_all.Controls.Add(this.button4);
+            this.panel_all.Controls.Add(this.label6);
+            this.panel_all.Controls.Add(this.trackBar1);
+            this.panel_all.Controls.Add(this.button2);
+            this.panel_all.Location = new System.Drawing.Point(10, 444);
+            this.panel_all.Name = "panel_all";
+            this.panel_all.Size = new System.Drawing.Size(190, 218);
+            this.panel_all.TabIndex = 12;
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(159)))), ((int)(((byte)(80)))));
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(100)))), ((int)(((byte)(126)))));
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(194)))), ((int)(((byte)(97)))));
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Helvetica World", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button2.ForeColor = System.Drawing.Color.Black;
+            this.button2.Location = new System.Drawing.Point(0, 50);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(190, 30);
+            this.button2.TabIndex = 13;
+            this.button2.Text = "Pick center";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.AutoSize = false;
+            this.trackBar1.LargeChange = 50;
+            this.trackBar1.Location = new System.Drawing.Point(0, 84);
+            this.trackBar1.Maximum = 1000;
+            this.trackBar1.Minimum = 1;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(190, 30);
+            this.trackBar1.SmallChange = 5;
+            this.trackBar1.TabIndex = 15;
+            this.trackBar1.TickFrequency = 100;
+            this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trackBar1.Value = 150;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            // 
+            // label6
+            // 
+            this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
+            this.label6.Font = new System.Drawing.Font("Helvetica World", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(194)))), ((int)(((byte)(97)))));
+            this.label6.Location = new System.Drawing.Point(0, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(190, 50);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Circle inversion";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            // 
+            // button4
+            // 
+            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(156)))), ((int)(((byte)(190)))));
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(100)))), ((int)(((byte)(126)))));
+            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(194)))), ((int)(((byte)(97)))));
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Helvetica World", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button4.ForeColor = System.Drawing.Color.Black;
+            this.button4.Location = new System.Drawing.Point(50, 135);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(90, 30);
+            this.button4.TabIndex = 16;
+            this.button4.Text = "Do it!";
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // numericUpDown6
+            // 
+            this.numericUpDown6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
+            this.numericUpDown6.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.numericUpDown6.Font = new System.Drawing.Font("Mensch", 10F);
+            this.numericUpDown6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(194)))), ((int)(((byte)(97)))));
+            this.numericUpDown6.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDown6.Location = new System.Drawing.Point(0, 110);
+            this.numericUpDown6.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDown6.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown6.Name = "numericUpDown6";
+            this.numericUpDown6.Size = new System.Drawing.Size(190, 19);
+            this.numericUpDown6.TabIndex = 10;
+            this.numericUpDown6.Tag = "sier";
+            this.numericUpDown6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numericUpDown6.Value = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
+            this.numericUpDown6.ValueChanged += new System.EventHandler(this.numericUpDown6_ValueChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
-            this.ClientSize = new System.Drawing.Size(1016, 738);
+            this.ClientSize = new System.Drawing.Size(1317, 743);
+            this.Controls.Add(this.panel_all);
+            this.Controls.Add(this.panel_apoll);
             this.Controls.Add(this.panel_hilbert);
             this.Controls.Add(this.JmenoFraktalu);
             this.Controls.Add(this.panel_sier);
@@ -407,6 +625,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             this.panel_hilbert.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
+            this.panel_apoll.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
+            this.panel_all.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -437,6 +660,22 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown numericUpDown4;
         private System.Windows.Forms.ToolStripMenuItem crossToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sierpinskisCurveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem apollonianToolStripMenuItem;
+        private System.Windows.Forms.Panel panel_apoll;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown numericUpDown5;
+        private System.Windows.Forms.ToolStripMenuItem customToolStripMenuItem;
+        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.ToolStripMenuItem backgroundToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem foregroundToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem zMatrixToolStripMenuItem;
+        private System.Windows.Forms.Panel panel_all;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.NumericUpDown numericUpDown6;
     }
 }
 

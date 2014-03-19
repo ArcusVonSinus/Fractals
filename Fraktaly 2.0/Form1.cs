@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Fraktaly_2._0
 {
-    public enum FractalType { sierpinski,koch,hilbert,cross} //NEWFRACTAL
+    public enum FractalType { sierpinski,koch,hilbert,cross,siercur,apoll,zmatrix} //NEWFRACTAL
     public partial class Form1 : Form
     {
         public Fractal vykreslenyFraktal;
@@ -47,10 +47,29 @@ namespace Fraktaly_2._0
                         }
                     case FractalType.cross:
                         {
-                            
+
                             JmenoFraktalu.Text = "Cross";
                             break;
-                        } //NEWFRACTAL
+                        }
+                    case FractalType.siercur:
+                        {
+
+                            JmenoFraktalu.Text = "Sier. curve";
+                            break;
+                        }
+                    case FractalType.apoll:
+                        {
+
+                            JmenoFraktalu.Text = "Apollonian";
+                            break;
+                        }
+                    case FractalType.zmatrix:
+                        {
+
+                            JmenoFraktalu.Text = "Apollonian";
+                            break;
+                        }
+                    //NEWFRACTAL
 
                     default:
                         {
@@ -66,12 +85,16 @@ namespace Fraktaly_2._0
         {
             InitializeComponent();
 
+            invCenter = new Point(pictureBox1.Width / 2, pictureBox1.Height / 2);
 
             panely = new Panel[Enum.GetNames(typeof(FractalType)).Length];
             panely[0] = panel_sier;
             panely[1] = panel_koch;
             panely[2] = panel_hilbert;
             panely[3] = panel_hilbert;
+            panely[4] = panel_hilbert;
+            panely[5] = panel_apoll;
+            panely[6] = panel_hilbert;
             //NEWFRACTAL
 
             foreach(Panel p in panely)
@@ -79,7 +102,7 @@ namespace Fraktaly_2._0
                 p.Visible = false;
                 p.Location = new Point(10, 94);
             }
-
+            panel_all.Location = new Point(10, 444);
 
             menuStrip1.Renderer = new MyRenderer();           
 
@@ -89,7 +112,8 @@ namespace Fraktaly_2._0
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {            
+        {
+            invCenter = new Point(pictureBox1.Width / 2, pictureBox1.Height / 2);
             switch(typVykreslenehoFraktalu)
             {
                 case FractalType.sierpinski:
@@ -127,6 +151,36 @@ namespace Fraktaly_2._0
                         }
                         break;
                     }
+                case FractalType.siercur:
+                    {
+                        vykreslenyFraktal.vykresli(pictureBox1, (int)(numericUpDown4.Value));
+                        if (sender != null)
+                        {
+                            if (numericUpDown4.Value < numericUpDown4.Maximum)
+                                numericUpDown4.Value++;
+                        }
+                        break;
+                    }
+                case FractalType.apoll:
+                    {
+                        vykreslenyFraktal.vykresli(pictureBox1, (int)(numericUpDown5.Value));
+                        if (sender != null)
+                        {
+                            if (numericUpDown4.Value < numericUpDown5.Maximum - 20000)
+                                numericUpDown5.Value += 20000;
+                        }
+                        break;
+                    }
+                case FractalType.zmatrix:
+                    {
+                        vykreslenyFraktal.vykresli(pictureBox1, (int)(numericUpDown4.Value));
+                        if (sender != null)
+                        {
+                            if (numericUpDown4.Value < numericUpDown4.Maximum )
+                                numericUpDown4.Value ++;
+                        }
+                        break;
+                    }
                     //NEWFRACTAL
             }
 
@@ -136,6 +190,8 @@ namespace Fraktaly_2._0
         {
             if(typVykreslenehoFraktalu!=FractalType.sierpinski)
             {
+                numericUpDown1.Value = 3;
+                numericUpDown2.Value = 100000;
                 typVykreslenehoFraktalu = FractalType.sierpinski;
                 vykreslenyFraktal = new Sier();
                 button1_Click(null, null);
@@ -148,6 +204,7 @@ namespace Fraktaly_2._0
         {
             if (typVykreslenehoFraktalu != FractalType.koch)
             {
+                numericUpDown3.Value = 0;
                 typVykreslenehoFraktalu = FractalType.koch;
                 vykreslenyFraktal = new Koch();
                 button1_Click(null, null);
@@ -176,18 +233,45 @@ namespace Fraktaly_2._0
                     {
                         vykreslenyFraktal = new Cross();
                         break;
-                    }//NEWFRACTAL
+                    }
+                case FractalType.siercur:
+                    {
+                        vykreslenyFraktal = new SierCurve();
+                        break;
+                    }
+                case FractalType.apoll:
+                    {
+                        vykreslenyFraktal = new Apoll();
+                        break;
+                    }
+                case FractalType.zmatrix:
+                    {
+                        vykreslenyFraktal = new ZMatrix();
+                        break;
+                    }
+                //NEWFRACTAL
 
             }
             button1_Click(null, null);
         }
-        private void hilbertToolStripMenuItem_Click(object sender, EventArgs e)
+        private void backgroundToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (typVykreslenehoFraktalu != FractalType.hilbert)
+            DialogResult result = colorDialog1.ShowDialog(this);
+            if (result == DialogResult.OK)
             {
-                typVykreslenehoFraktalu = FractalType.hilbert;
-                vykreslenyFraktal = new Hilbert();
-                button1_Click(null, null);
+                Barvy.pozadi = colorDialog1.Color;
+                reloadfrac();
+            }
+
+        }
+
+        private void foregroundToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = colorDialog1.ShowDialog(this);
+            if (result == DialogResult.OK)
+            {
+                Barvy.popredi = colorDialog1.Color;
+                reloadfrac();
             }
         }
         private void bWToolStripMenuItem_Click(object sender, EventArgs e)
@@ -196,7 +280,6 @@ namespace Fraktaly_2._0
             Barvy.popredi = System.Drawing.ColorTranslator.FromHtml("#000000");
             reloadfrac();
         }
-
         private void greenWhiteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Barvy.pozadi = System.Drawing.ColorTranslator.FromHtml("#2b2b2b");
@@ -204,13 +287,136 @@ namespace Fraktaly_2._0
             reloadfrac();
         }
 
+        private void hilbertToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (typVykreslenehoFraktalu != FractalType.hilbert)
+            {
+                numericUpDown4.Value = 0;
+                typVykreslenehoFraktalu = FractalType.hilbert;
+                vykreslenyFraktal = new Hilbert();
+                button1_Click(null, null);
+            }
+        }
+        
         private void crossToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (typVykreslenehoFraktalu != FractalType.cross)
             {
+                numericUpDown4.Value = 0;
                 typVykreslenehoFraktalu = FractalType.cross;
                 vykreslenyFraktal = new Cross();
                 button1_Click(null, null);
+            }
+        }
+
+        private void sierpinskisCurveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (typVykreslenehoFraktalu != FractalType.siercur)
+            {
+                numericUpDown4.Value = 0;
+                typVykreslenehoFraktalu = FractalType.siercur;
+                vykreslenyFraktal = new SierCurve();
+                button1_Click(null, null);
+            }
+        }
+
+
+        private void apollonianToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (typVykreslenehoFraktalu != FractalType.apoll)
+            {
+                numericUpDown5.Value = 10000;
+                typVykreslenehoFraktalu = FractalType.apoll;
+                vykreslenyFraktal = new Apoll();
+                button1_Click(null, null);
+            }
+        }
+
+
+
+        private void zMatrixToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (typVykreslenehoFraktalu != FractalType.zmatrix)
+            {
+                numericUpDown4.Value = 0;
+                typVykreslenehoFraktalu = FractalType.zmatrix;
+                vykreslenyFraktal = new ZMatrix();
+                button1_Click(null, null);
+            }
+        }
+
+        Point invCenter;        
+        private void button4_Click(object sender, EventArgs e)
+        {
+         
+            Bitmap newbmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            using (Graphics gfx = Graphics.FromImage(newbmp))
+            using (SolidBrush brush = new SolidBrush(Barvy.pozadi))
+            {
+                gfx.FillRectangle(brush, 0, 0, pictureBox1.Width, pictureBox1.Height);
+            }
+            Bitmap oldbmp = (Bitmap)pictureBox1.Image;
+
+            int r = trackBar1.Value;
+            double v;
+            double k;
+            int tx, ty;
+            int w = pictureBox1.Width;
+            int h = pictureBox1.Height;
+            Color c = Barvy.popredi;
+            for(int x = 0;x<pictureBox1.Width;x++)
+            {
+                for (int y = 0; y < pictureBox1.Height; y++)
+                {
+                    
+	                v=(x-invCenter.X)*(x-invCenter.X)+(y-invCenter.Y)*(y-invCenter.Y);
+	                k=1.0*r*r/(1.0*v);
+	                tx=(int)((x-invCenter.X)*k+invCenter.X);
+	                ty=(int)((y-invCenter.Y)*k+invCenter.Y);
+                    if (tx >= 0 && tx < w && ty >= 0 && ty < h)
+                        if (oldbmp.GetPixel(tx, ty) == c)
+                            newbmp.SetPixel(x, y, c);
+                }
+            }
+            pictureBox1.Image = newbmp;
+            pictureBox1.Refresh();
+        }
+
+        private void numericUpDown6_ValueChanged(object sender, EventArgs e)
+        {
+            trackBar1.Value = (int)(numericUpDown6.Value);
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            numericUpDown6.Value = trackBar1.Value;
+        }
+        bool invCenterPicking = false;
+        private void button2_Click(object sender, EventArgs e)
+        {
+            invCenterPicking = !invCenterPicking;
+            if(invCenterPicking)
+            {
+                this.Cursor = Cursors.Cross;
+                button2.Text = "Cancel";
+            }
+            else
+            {
+                this.Cursor = Cursors.Default;
+                button2.Text = "Pick center";
+            }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            if(invCenterPicking)
+            {
+                MouseEventArgs ee = (MouseEventArgs)e;
+                this.Cursor = Cursors.Default;
+                button2.Text = "Pick center";
+                invCenterPicking = false;
+                invCenter.X = ee.X;
+                invCenter.Y = ee.Y;
             }
         }
 
