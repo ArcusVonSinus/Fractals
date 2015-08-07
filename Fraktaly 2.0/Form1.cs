@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Fraktaly_2._0
 {
-    public enum FractalType { sierpinski,koch,hilbert,cross,siercur,apoll,zmatrix} //NEWFRACTAL
+    public enum FractalType { sierpinski,koch,hilbert,cross,siercur,apoll,zmatrix,hexacurve,hexacurve2,recursion, crooked} //NEWFRACTAL
     public partial class Form1 : Form
     {
         public Fractal vykreslenyFraktal;
@@ -69,6 +69,30 @@ namespace Fraktaly_2._0
                             JmenoFraktalu.Text = "Apollonian";
                             break;
                         }
+                    case FractalType.hexacurve:
+                        {
+
+                            JmenoFraktalu.Text = "Hexacurve";
+                            break;
+                        }
+                    case FractalType.hexacurve2:
+                        {
+
+                            JmenoFraktalu.Text = "Hexacurve 2";
+                            break;
+                        }
+                    case FractalType.recursion:
+                        {
+
+                            JmenoFraktalu.Text = "Recursion";
+                            break;
+                        }
+                    case FractalType.crooked:
+                        {
+
+                            JmenoFraktalu.Text = "Crooked";
+                            break;
+                        }
                     //NEWFRACTAL
 
                     default:
@@ -95,6 +119,10 @@ namespace Fraktaly_2._0
             panely[4] = panel_hilbert;
             panely[5] = panel_apoll;
             panely[6] = panel_hilbert;
+            panely[7] = panel_hilbert;
+            panely[8] = panel_hilbert;
+            panely[9] = panel_recursion;
+            panely[10] = panel_crooked;
             //NEWFRACTAL
 
             foreach(Panel p in panely)
@@ -176,9 +204,44 @@ namespace Fraktaly_2._0
                         vykreslenyFraktal.vykresli(pictureBox1, (int)(numericUpDown4.Value));
                         if (sender != null)
                         {
-                            if (numericUpDown4.Value < numericUpDown4.Maximum )
-                                numericUpDown4.Value ++;
+                            if (numericUpDown4.Value < numericUpDown4.Maximum)
+                                numericUpDown4.Value++;
                         }
+                        break;
+                    }
+                case FractalType.hexacurve:
+                    {
+                        vykreslenyFraktal.vykresli(pictureBox1, (int)(numericUpDown4.Value));
+                        if (sender != null)
+                        {
+                            if (numericUpDown4.Value < numericUpDown4.Maximum)
+                                numericUpDown4.Value++;
+                        }
+                        break;
+                    }
+                case FractalType.hexacurve2:
+                    {
+                        vykreslenyFraktal.vykresli(pictureBox1, (int)(numericUpDown4.Value));
+                        if (sender != null)
+                        {
+                            if (numericUpDown4.Value < numericUpDown4.Maximum)
+                                numericUpDown4.Value++;
+                        }
+                        break;
+                    }
+                case FractalType.recursion:
+                    {
+                        vykreslenyFraktal.vykresli(pictureBox1, (int)(numericUpDown7.Value), textBox1.Text);
+                        if (sender != null)
+                        {
+                            if (numericUpDown7.Value < numericUpDown7.Maximum)
+                                numericUpDown7.Value++;
+                        }
+                        break;
+                    }
+                case FractalType.crooked:
+                    {
+                        vykreslenyFraktal.vykresli(pictureBox1, (double)(trackBar2.Value)/128.0, (int) numericUpDown8.Value);                       
                         break;
                     }
                     //NEWFRACTAL
@@ -247,6 +310,21 @@ namespace Fraktaly_2._0
                 case FractalType.zmatrix:
                     {
                         vykreslenyFraktal = new ZMatrix();
+                        break;
+                    }
+                case FractalType.hexacurve:
+                    {
+                        vykreslenyFraktal = new Hexacurve();
+                        break;
+                    }
+                case FractalType.hexacurve2:
+                    {
+                        vykreslenyFraktal = new Hexacurve2();
+                        break;
+                    }
+                case FractalType.recursion:
+                    {
+                        vykreslenyFraktal = new Recursion();
                         break;
                     }
                 //NEWFRACTAL
@@ -420,6 +498,64 @@ namespace Fraktaly_2._0
             }
         }
 
+        private void hexacurveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (typVykreslenehoFraktalu != FractalType.hexacurve)
+            {
+                numericUpDown4.Value = 0;
+                typVykreslenehoFraktalu = FractalType.hexacurve;
+                vykreslenyFraktal = new Hexacurve();
+                button1_Click(null, null);
+            }
+        }
+
+        private void hexacurve2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (typVykreslenehoFraktalu != FractalType.hexacurve2)
+            {
+                numericUpDown4.Value = 0;
+                typVykreslenehoFraktalu = FractalType.hexacurve2;
+                vykreslenyFraktal = new Hexacurve2();
+                button1_Click(null, null);
+            }
+        }
+
+        private void recursionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (typVykreslenehoFraktalu != FractalType.recursion)
+            {
+                numericUpDown7.Value = 1;
+                typVykreslenehoFraktalu = FractalType.recursion;
+                vykreslenyFraktal = new Recursion();
+                button1_Click(null, null);
+            }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Image.Save("save.png", System.Drawing.Imaging.ImageFormat.Png);
+        }
+
+        private void crookedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (typVykreslenehoFraktalu != FractalType.crooked)
+            {                
+                typVykreslenehoFraktalu = FractalType.crooked;
+                vykreslenyFraktal = new Crooked();
+                button1_Click(null, null);
+            }
+        }
+
+        private void trackBar2_ValueChanged(object sender, EventArgs e)
+        {
+            vykreslenyFraktal.vykresli(pictureBox1, (double)trackBar2.Value/128.0, 1);
+        }
+
+        private void trackBar2_MouseUp(object sender, EventArgs e)
+        {
+            vykreslenyFraktal.vykresli(pictureBox1, (double)trackBar2.Value / 128.0, (int)numericUpDown8.Value);
+        }
+
         
 
 
@@ -464,8 +600,10 @@ namespace Fraktaly_2._0
     }
     public class Fractal
     {
-        public virtual void vykresli(PictureBox pb, int n){}
+        public virtual void vykresli(PictureBox pb, int n) { }
+        public virtual void vykresli(PictureBox pb, int n,string pat) { }
         public virtual void vykresli(PictureBox pb, int n, int m){}
+        public virtual void vykresli(PictureBox pb, double k, int tarDepth) { }
         protected void DrawLine(Bitmap bmp, float x1, float y1, float x2, float y2)
         {
             double x = x2 - x1;
