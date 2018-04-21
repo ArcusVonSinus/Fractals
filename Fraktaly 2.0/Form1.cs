@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Fraktaly_2._0
 {
-    public enum FractalType { sierpinski,koch,hilbert,cross,siercur,apoll,zmatrix,hexacurve,hexacurve2,recursion, crooked} //NEWFRACTAL
+    public enum FractalType { sierpinski,koch,hilbert,cross,siercur,apoll,zmatrix,hexacurve,hexacurve2,recursion, crooked, crossRound} //NEWFRACTAL
     public partial class Form1 : Form
     {
         public Fractal vykreslenyFraktal;
@@ -93,6 +93,11 @@ namespace Fraktaly_2._0
                             JmenoFraktalu.Text = "Crooked";
                             break;
                         }
+					case FractalType.crossRound:
+						{
+							JmenoFraktalu.Text = "Rounded cross";
+							break;
+						}
                     //NEWFRACTAL
 
                     default:
@@ -123,14 +128,15 @@ namespace Fraktaly_2._0
             panely[8] = panel_hilbert;
             panely[9] = panel_recursion;
             panely[10] = panel_crooked;
+			panely[11] = panel_hilbert;
             //NEWFRACTAL
 
             foreach(Panel p in panely)
             {
                 p.Visible = false;
-                p.Location = new Point(10, 94);
+                p.Location = new Point(20, 188);
             }
-            panel_all.Location = new Point(10, 444);
+            panel_all.Location = new Point(20, 888);
 
             menuStrip1.Renderer = new MyRenderer();           
 
@@ -244,6 +250,16 @@ namespace Fraktaly_2._0
                         vykreslenyFraktal.vykresli(pictureBox1, (double)(trackBar2.Value)/128.0, (int) numericUpDown8.Value);                       
                         break;
                     }
+				case FractalType.crossRound:
+					{
+						vykreslenyFraktal.vykresli(pictureBox1, (int)(numericUpDown4.Value));
+						if (sender != null)
+						{
+							if (numericUpDown4.Value < numericUpDown4.Maximum)
+								numericUpDown4.Value++;
+						}
+						break;
+					}
                     //NEWFRACTAL
             }
 
@@ -327,11 +343,21 @@ namespace Fraktaly_2._0
                         vykreslenyFraktal = new Recursion();
                         break;
                     }
-                //NEWFRACTAL
+				case FractalType.crossRound:
+					{
+						vykreslenyFraktal = new CrossRound();
+						break;
+					}
+					//NEWFRACTAL
 
             }
             button1_Click(null, null);
         }
+		/* 
+		 * Přidat fraktal do nabidky menu
+		 * NEWFRACTAL
+		 * 
+		 */
         private void backgroundToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult result = colorDialog1.ShowDialog(this);
@@ -556,12 +582,25 @@ namespace Fraktaly_2._0
             vykreslenyFraktal.vykresli(pictureBox1, (double)trackBar2.Value / 128.0, (int)numericUpDown8.Value);
         }
 
-        
+		private void wBToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Barvy.pozadi = System.Drawing.ColorTranslator.FromHtml("#000000");
+			Barvy.popredi = System.Drawing.ColorTranslator.FromHtml("#ffffff");
+			reloadfrac();
+		}
 
-
-        
-    }
-    public static class Barvy
+		private void roundedCrossToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (typVykreslenehoFraktalu != FractalType.crossRound)
+			{
+				numericUpDown4.Value = 0;
+				typVykreslenehoFraktalu = FractalType.crossRound;
+				vykreslenyFraktal = new CrossRound();
+				button1_Click(null, null);
+			}
+		}
+	}
+	public static class Barvy
     {
         public static Color pozadi = System.Drawing.ColorTranslator.FromHtml("#2b2b2b");
         public static Color popredi = System.Drawing.ColorTranslator.FromHtml("#519f50");

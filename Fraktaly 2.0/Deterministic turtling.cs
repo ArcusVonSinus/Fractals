@@ -207,88 +207,235 @@ namespace Fraktaly_2._0
             pb.Refresh();
         }
     }
-    class Cross : Turtle
-    {
-        Bitmap bmp;
-        int depth = 0;
-        int width = 0, height = 0;
+	class Cross : Turtle
+	{
+		Bitmap bmp;
+		int depth = 0;
+		int width = 0, height = 0;
 
-        public Cross()
-        {
-            P = 3f * Math.PI / 2f;
-            L = P;
-        }
-        void drawRek(int dept, int toc)
-        {
-            if (dept >= depth)
-            {
-                krok(bmp);
-                if (toc == 1)
-                    tocL();
-                else
-                    tocP();
-            }
-            else
-            {
-                if (toc == 2)
-                {
-                    drawRek(dept + 1, 2);
-                    drawRek(dept + 1, 1);
-                    drawRek(dept + 1, 2);
-                }
-                else
-                {
-                    drawRek(dept + 1, 2);
-                    drawRek(dept + 1, 1);
-                    drawRek(dept + 1, 1);
-                    drawRek(dept + 1, 1);
-                    drawRek(dept + 1, 2);
-                }
-            }
-        }
-        public override void vykresli(PictureBox pb, int hloubka)
-        {
-            if (depth != hloubka || width != pb.Width || height != pb.Height)
-            {
-                depth = hloubka;
-                width = pb.Width;
-                height = pb.Height;
+		public Cross()
+		{
+			P = 3f * Math.PI / 2f;
+			L = P;
+		}
+		void drawRek(int dept, int toc)
+		{
+			if (dept >= depth)
+			{
+				krok(bmp);
+				if (toc == 1)
+					tocL();
+				else
+					tocP();
+			}
+			else
+			{
+				if (toc == 2)
+				{
+					drawRek(dept + 1, 2);
+					drawRek(dept + 1, 1);
+					drawRek(dept + 1, 2);
+				}
+				else
+				{
+					drawRek(dept + 1, 2);
+					drawRek(dept + 1, 1);
+					drawRek(dept + 1, 1);
+					drawRek(dept + 1, 1);
+					drawRek(dept + 1, 2);
+				}
+			}
+		}
+		public override void vykresli(PictureBox pb, int hloubka)
+		{
+			if (depth != hloubka || width != pb.Width || height != pb.Height)
+			{
+				depth = hloubka;
+				width = pb.Width;
+				height = pb.Height;
 
-                bmp = new Bitmap(pb.Width, pb.Height);
-                pb.Image = bmp;
-                using (Graphics gfx = Graphics.FromImage(bmp))
-                using (SolidBrush brush = new SolidBrush(Barvy.pozadi))
-                {
-                    gfx.FillRectangle(brush, 0, 0, pb.Width, pb.Height);
-                }
-                smer = Math.PI;
-                double sirka;
-                double coef = Math.Pow(2f, depth + 1);
-                coef -= 1;
-                if (width < height)
-                    sirka = width - 40;
-                else
-                    sirka = height - 40;
+				bmp = new Bitmap(pb.Width, pb.Height);
+				pb.Image = bmp;
+				using (Graphics gfx = Graphics.FromImage(bmp))
+				using (SolidBrush brush = new SolidBrush(Barvy.pozadi))
+				{
+					gfx.FillRectangle(brush, 0, 0, pb.Width, pb.Height);
+				}
+				smer = Math.PI;
+				double sirka;
+				double coef = Math.Pow(2f, depth + 1);
+				coef -= 1;
+				if (width < height)
+					sirka = width - 40;
+				else
+					sirka = height - 40;
 
-                delkakroku = sirka / coef;
+				delkakroku = sirka / coef;
 
-                poloha.X = 20f + (float)((Math.Pow(2f, hloubka)) * delkakroku);
-                poloha.Y = 20;
+				poloha.X = 20f + (float)((Math.Pow(2f, hloubka)) * delkakroku);
+				poloha.Y = 20;
 
-                drawRek(0, 2);
-                drawRek(0, 2);
-                drawRek(0, 2);
-                drawRek(0, 2);
-            }
-            else
-            {
-                pb.Image = bmp;
-            }
-            pb.Refresh();
+				drawRek(0, 2);
+				drawRek(0, 2);
+				drawRek(0, 2);
+				drawRek(0, 2);
+			}
+			else
+			{
+				pb.Image = bmp;
+			}
+			pb.Refresh();
 
-        }
-    }
-    class SierCurve : Turtle
+		}
+	}
+	class CrossRound : Turtle
+	{
+		Bitmap bmp;
+		int depth = 0;
+		int width = 0, height = 0;
+		protected PointF temp2 = new PointF(0, 0);
+		void SetPixel2(int x, int y)
+		{
+			int w = bmp.Width;
+			int h = bmp.Height;
+			if (0 <= x)
+				if (x + 1 < w)
+					if (y >= 0)
+						if (y + 1 <= h)
+						{
+							bmp.SetPixel(x, y, Barvy.popredi);
+							bmp.SetPixel(x + 1, y, Barvy.popredi);
+							bmp.SetPixel(x, y + 1, Barvy.popredi);
+							bmp.SetPixel(x + 1, y + 1, Barvy.popredi);
+						}
+		}
+		void DrawQuarterCircle(int x0, int y0, int x1, int y1)//Ctvrtkruznice o stredu (x0,y0) zacinajici v (x1,y1) jdouci v kladnem smeru
+		{
+			
+			double phi = Math.PI / 2f;
+			int radius = (int)(Math.Sqrt((x1 - x0) * (x1 - x0) + (y1 - y0) * (y1 - y0)));
+			int delka = (int)(phi * radius);
+			for(int i = 0; i<delka;i++)
+			{
+				double temp = phi * i / ((double)(delka));
+				int x = (int)(x0 + (x1 - x0) * Math.Cos(temp) - (y1 - y0) * Math.Sin(temp));
+				int y = (int)(y0 + (x1 - x0) * Math.Sin(temp) + (y1 - y0) * Math.Cos(temp));
+				SetPixel2(x, y);
+			}
+			
+		}
+		void krokRounded(Bitmap bmp,bool doleva)
+		{
+			temp.X = (float)(poloha.X + 0.5f*delkakroku * Math.Cos(smer));
+			temp.Y = (float)(poloha.Y - 0.5f*delkakroku * Math.Sin(smer));
+			if (doleva)
+				tocL();
+			else
+				tocP();
+			temp2.X = (float)(temp.X + 0.5f * delkakroku * Math.Cos(smer));
+			temp2.Y = (float)(temp.Y - 0.5f * delkakroku * Math.Sin(smer));
+			int x0 = (int)(poloha.X + (temp2.X - temp.X));
+			int y0 = (int)(poloha.Y + (temp2.Y - temp.Y));
+			int x1, y1;
+			if(doleva)
+			{
+				x1 = (int) poloha.X;
+				y1 = (int) poloha.Y;
+			}
+			else
+			{
+				x1 = (int) temp2.X;
+				y1 = (int) temp2.Y;
+			}
+			DrawQuarterCircle(x0, y0, x1, y1);
+
+			//DrawLine(bmp, poloha, temp);
+			//DrawLine(bmp, temp, temp2);
+
+			poloha.X = temp2.X;
+			poloha.Y = temp2.Y;
+		}
+		public CrossRound()
+		{
+			P = 3f * Math.PI / 2f;
+			L = P;
+		}
+		void drawRek(int dept, int toc)
+		{
+			if (dept >= depth)
+			{
+				if (toc == 1)
+				{
+					krokRounded(bmp,true);
+					//tocL();
+				}
+				else
+				{
+					krokRounded(bmp, false);
+					//tocP();
+				}
+			}
+			else
+			{
+				if (toc == 2)
+				{
+					drawRek(dept + 1, 2);
+					drawRek(dept + 1, 1);
+					drawRek(dept + 1, 2);
+				}
+				else
+				{
+					drawRek(dept + 1, 2);
+					drawRek(dept + 1, 1);
+					drawRek(dept + 1, 1);
+					drawRek(dept + 1, 1);
+					drawRek(dept + 1, 2);
+				}
+			}
+		}
+		public override void vykresli(PictureBox pb, int hloubka)
+		{
+			if (depth != hloubka || width != pb.Width || height != pb.Height)
+			{
+				depth = hloubka;
+				width = pb.Width;
+				height = pb.Height;
+
+				bmp = new Bitmap(pb.Width, pb.Height);
+				pb.Image = bmp;
+				using (Graphics gfx = Graphics.FromImage(bmp))
+				using (SolidBrush brush = new SolidBrush(Barvy.pozadi))
+				{
+					gfx.FillRectangle(brush, 0, 0, pb.Width, pb.Height);
+				}
+				smer = Math.PI;
+				double sirka;
+				double coef = Math.Pow(2f, depth + 1);
+				coef -= 1;
+				if (width < height)
+					sirka = width - 40;
+				else
+					sirka = height - 40;
+
+				delkakroku = sirka / coef;
+
+				poloha.X = 20f + (float)((Math.Pow(2f, hloubka)-0.5) * delkakroku);
+				poloha.Y = 20;
+
+				drawRek(0, 2);
+				drawRek(0, 2);
+				drawRek(0, 2);
+				drawRek(0, 2);
+			}
+			else
+			{
+				pb.Image = bmp;
+			}
+			pb.Refresh();
+
+		}
+	}
+	class SierCurve : Turtle
     {
         Bitmap bmp;
         bool sikmo = true;
