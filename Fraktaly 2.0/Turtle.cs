@@ -12,6 +12,7 @@ namespace Fraktaly_2._0
 {
     class Turtle : Fractal
     {
+		
         protected double P=Math.PI/6f;
         protected double L=Math.PI / 6f;
         protected double smer = 0;

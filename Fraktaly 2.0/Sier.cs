@@ -18,9 +18,9 @@ namespace Fraktaly_2._0
         double k; //koeficient priblížení;
         Bitmap bmp;
         PointF[] vrcholy;
-        public Sier()
+        public Sier(PictureBox pb)
         {
-            
+			this.pb = pb;
         }
         void InicSier() 
         {
@@ -42,7 +42,7 @@ namespace Fraktaly_2._0
             else
                 k = 2 + Math.Sqrt(2 - 2 * Math.Cos(2 * (Math.PI * (1 - (2.0 / vrcholu))) - Math.PI));
         }
-        public override void vykresli(PictureBox pb, int vrcholu, int bodu)
+        public override void vykresli(int vrcholu, int bodu)
         {
             if (vrcholu != this.vrcholu || bodu != this.bodu || width!=pb.Width || height!= pb.Height)
             {

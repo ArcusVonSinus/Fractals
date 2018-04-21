@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.button1 = new System.Windows.Forms.Button();
 			this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -37,12 +36,12 @@
 			this.kochToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.hilbertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.crossToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.roundedCrossToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.sierpinskisCurveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.apollonianToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.zMatrixToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.hexacurveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.hexacurve2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.recursionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.crookedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.colorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.bWToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,6 +58,7 @@
 			this.label3 = new System.Windows.Forms.Label();
 			this.panel_sier = new System.Windows.Forms.Panel();
 			this.panel_hilbert = new System.Windows.Forms.Panel();
+			this.slowDrawButton = new System.Windows.Forms.Button();
 			this.label4 = new System.Windows.Forms.Label();
 			this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
 			this.panel_apoll = new System.Windows.Forms.Panel();
@@ -83,8 +83,8 @@
 			this.label9 = new System.Windows.Forms.Label();
 			this.trackBar2 = new System.Windows.Forms.TrackBar();
 			this.label10 = new System.Windows.Forms.Label();
-			this.roundedCrossToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.button3 = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
@@ -103,23 +103,8 @@
 			this.panel_crooked.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
-			// 
-			// pictureBox1
-			// 
-			this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.pictureBox1.BackColor = System.Drawing.Color.White;
-			this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.pictureBox1.Location = new System.Drawing.Point(560, 81);
-			this.pictureBox1.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
-			this.pictureBox1.MinimumSize = new System.Drawing.Size(260, 233);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(3404, 1657);
-			this.pictureBox1.TabIndex = 0;
-			this.pictureBox1.TabStop = false;
-			this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
 			// 
 			// button1
 			// 
@@ -131,7 +116,7 @@
 			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
 			this.button1.ForeColor = System.Drawing.Color.Black;
-			this.button1.Location = new System.Drawing.Point(24, 1619);
+			this.button1.Location = new System.Drawing.Point(24, 1349);
 			this.button1.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(509, 124);
@@ -180,7 +165,7 @@
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Padding = new System.Windows.Forms.Padding(16, 5, 0, 5);
-			this.menuStrip1.Size = new System.Drawing.Size(3824, 58);
+			this.menuStrip1.Size = new System.Drawing.Size(2348, 55);
 			this.menuStrip1.TabIndex = 5;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
@@ -197,10 +182,9 @@
             this.zMatrixToolStripMenuItem,
             this.hexacurveToolStripMenuItem,
             this.hexacurve2ToolStripMenuItem,
-            this.recursionToolStripMenuItem,
             this.crookedToolStripMenuItem});
 			this.fractalToolStripMenuItem.Name = "fractalToolStripMenuItem";
-			this.fractalToolStripMenuItem.Size = new System.Drawing.Size(116, 48);
+			this.fractalToolStripMenuItem.Size = new System.Drawing.Size(116, 45);
 			this.fractalToolStripMenuItem.Text = "Fractal";
 			// 
 			// sierpinskiToolStripMenuItem
@@ -232,6 +216,13 @@
 			this.crossToolStripMenuItem.Size = new System.Drawing.Size(357, 46);
 			this.crossToolStripMenuItem.Text = "Cross";
 			this.crossToolStripMenuItem.Click += new System.EventHandler(this.crossToolStripMenuItem_Click);
+			// 
+			// roundedCrossToolStripMenuItem
+			// 
+			this.roundedCrossToolStripMenuItem.Name = "roundedCrossToolStripMenuItem";
+			this.roundedCrossToolStripMenuItem.Size = new System.Drawing.Size(357, 46);
+			this.roundedCrossToolStripMenuItem.Text = "Rounded Cross";
+			this.roundedCrossToolStripMenuItem.Click += new System.EventHandler(this.roundedCrossToolStripMenuItem_Click);
 			// 
 			// sierpinskisCurveToolStripMenuItem
 			// 
@@ -268,13 +259,6 @@
 			this.hexacurve2ToolStripMenuItem.Text = "Hexacurve 2";
 			this.hexacurve2ToolStripMenuItem.Click += new System.EventHandler(this.hexacurve2ToolStripMenuItem_Click);
 			// 
-			// recursionToolStripMenuItem
-			// 
-			this.recursionToolStripMenuItem.Name = "recursionToolStripMenuItem";
-			this.recursionToolStripMenuItem.Size = new System.Drawing.Size(357, 46);
-			this.recursionToolStripMenuItem.Text = "Recursion";
-			this.recursionToolStripMenuItem.Click += new System.EventHandler(this.recursionToolStripMenuItem_Click);
-			// 
 			// crookedToolStripMenuItem
 			// 
 			this.crookedToolStripMenuItem.Name = "crookedToolStripMenuItem";
@@ -290,7 +274,7 @@
             this.greenWhiteToolStripMenuItem,
             this.customToolStripMenuItem});
 			this.colorsToolStripMenuItem.Name = "colorsToolStripMenuItem";
-			this.colorsToolStripMenuItem.Size = new System.Drawing.Size(115, 48);
+			this.colorsToolStripMenuItem.Size = new System.Drawing.Size(115, 45);
 			this.colorsToolStripMenuItem.Text = "Colors";
 			// 
 			// bWToolStripMenuItem
@@ -340,7 +324,7 @@
 			// saveToolStripMenuItem
 			// 
 			this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-			this.saveToolStripMenuItem.Size = new System.Drawing.Size(91, 48);
+			this.saveToolStripMenuItem.Size = new System.Drawing.Size(91, 45);
 			this.saveToolStripMenuItem.Text = "Save";
 			this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
 			// 
@@ -432,27 +416,44 @@
 			// 
 			// panel_sier
 			// 
-			this.panel_sier.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
 			this.panel_sier.Controls.Add(this.label1);
 			this.panel_sier.Controls.Add(this.numericUpDown1);
 			this.panel_sier.Controls.Add(this.label2);
 			this.panel_sier.Controls.Add(this.numericUpDown2);
-			this.panel_sier.Location = new System.Drawing.Point(1181, 1135);
+			this.panel_sier.Location = new System.Drawing.Point(593, 701);
 			this.panel_sier.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
 			this.panel_sier.Name = "panel_sier";
-			this.panel_sier.Size = new System.Drawing.Size(507, 1354);
+			this.panel_sier.Size = new System.Drawing.Size(507, 495);
 			this.panel_sier.TabIndex = 11;
 			// 
 			// panel_hilbert
 			// 
+			this.panel_hilbert.Controls.Add(this.slowDrawButton);
 			this.panel_hilbert.Controls.Add(this.label4);
 			this.panel_hilbert.Controls.Add(this.numericUpDown4);
-			this.panel_hilbert.Location = new System.Drawing.Point(605, 1118);
+			this.panel_hilbert.Location = new System.Drawing.Point(593, 99);
 			this.panel_hilbert.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
 			this.panel_hilbert.Name = "panel_hilbert";
-			this.panel_hilbert.Size = new System.Drawing.Size(507, 1354);
+			this.panel_hilbert.Size = new System.Drawing.Size(507, 530);
 			this.panel_hilbert.TabIndex = 11;
+			// 
+			// slowDrawButton
+			// 
+			this.slowDrawButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(159)))), ((int)(((byte)(80)))));
+			this.slowDrawButton.FlatAppearance.BorderSize = 0;
+			this.slowDrawButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(100)))), ((int)(((byte)(126)))));
+			this.slowDrawButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(194)))), ((int)(((byte)(97)))));
+			this.slowDrawButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.slowDrawButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.slowDrawButton.ForeColor = System.Drawing.Color.Black;
+			this.slowDrawButton.Location = new System.Drawing.Point(0, 238);
+			this.slowDrawButton.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+			this.slowDrawButton.Name = "slowDrawButton";
+			this.slowDrawButton.Size = new System.Drawing.Size(507, 72);
+			this.slowDrawButton.TabIndex = 17;
+			this.slowDrawButton.Text = "SlowDraw";
+			this.slowDrawButton.UseVisualStyleBackColor = false;
+			this.slowDrawButton.Click += new System.EventHandler(this.slowDrawButton_Click);
 			// 
 			// label4
 			// 
@@ -485,15 +486,21 @@
 			this.numericUpDown4.TabIndex = 10;
 			this.numericUpDown4.Tag = "sier";
 			this.numericUpDown4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.numericUpDown4.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			// 
 			// panel_apoll
 			// 
+			this.panel_apoll.Controls.Add(this.button3);
 			this.panel_apoll.Controls.Add(this.label5);
 			this.panel_apoll.Controls.Add(this.numericUpDown5);
-			this.panel_apoll.Location = new System.Drawing.Point(1909, 897);
+			this.panel_apoll.Location = new System.Drawing.Point(1639, 99);
 			this.panel_apoll.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
 			this.panel_apoll.Name = "panel_apoll";
-			this.panel_apoll.Size = new System.Drawing.Size(507, 1354);
+			this.panel_apoll.Size = new System.Drawing.Size(507, 486);
 			this.panel_apoll.TabIndex = 12;
 			// 
 			// label5
@@ -528,7 +535,7 @@
             0,
             0});
 			this.numericUpDown5.Minimum = new decimal(new int[] {
-            10000,
+            50,
             0,
             0,
             0});
@@ -549,10 +556,10 @@
 			this.panel_recursion.Controls.Add(this.label8);
 			this.panel_recursion.Controls.Add(this.label7);
 			this.panel_recursion.Controls.Add(this.numericUpDown7);
-			this.panel_recursion.Location = new System.Drawing.Point(1784, 1178);
+			this.panel_recursion.Location = new System.Drawing.Point(1116, 655);
 			this.panel_recursion.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
 			this.panel_recursion.Name = "panel_recursion";
-			this.panel_recursion.Size = new System.Drawing.Size(507, 1354);
+			this.panel_recursion.Size = new System.Drawing.Size(507, 541);
 			this.panel_recursion.TabIndex = 13;
 			// 
 			// textBox1
@@ -626,7 +633,7 @@
 			// 
 			this.panel_koch.Controls.Add(this.label3);
 			this.panel_koch.Controls.Add(this.numericUpDown3);
-			this.panel_koch.Location = new System.Drawing.Point(2475, 904);
+			this.panel_koch.Location = new System.Drawing.Point(2482, 99);
 			this.panel_koch.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
 			this.panel_koch.Name = "panel_koch";
 			this.panel_koch.Size = new System.Drawing.Size(507, 1354);
@@ -659,10 +666,10 @@
 			this.panel_all.Controls.Add(this.label6);
 			this.panel_all.Controls.Add(this.trackBar1);
 			this.panel_all.Controls.Add(this.button2);
-			this.panel_all.Location = new System.Drawing.Point(27, 1059);
+			this.panel_all.Location = new System.Drawing.Point(27, 844);
 			this.panel_all.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
 			this.panel_all.Name = "panel_all";
-			this.panel_all.Size = new System.Drawing.Size(507, 520);
+			this.panel_all.Size = new System.Drawing.Size(507, 427);
 			this.panel_all.TabIndex = 12;
 			// 
 			// numericUpDown6
@@ -677,7 +684,7 @@
             0,
             0,
             0});
-			this.numericUpDown6.Location = new System.Drawing.Point(0, 262);
+			this.numericUpDown6.Location = new System.Drawing.Point(0, 280);
 			this.numericUpDown6.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
 			this.numericUpDown6.Maximum = new decimal(new int[] {
             1000,
@@ -711,7 +718,7 @@
 			this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
 			this.button4.ForeColor = System.Drawing.Color.Black;
-			this.button4.Location = new System.Drawing.Point(133, 322);
+			this.button4.Location = new System.Drawing.Point(138, 336);
 			this.button4.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
 			this.button4.Name = "button4";
 			this.button4.Size = new System.Drawing.Size(240, 72);
@@ -726,10 +733,10 @@
 			this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
 			this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
 			this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(194)))), ((int)(((byte)(97)))));
-			this.label6.Location = new System.Drawing.Point(0, 0);
+			this.label6.Location = new System.Drawing.Point(0, -1);
 			this.label6.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
 			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(507, 119);
+			this.label6.Size = new System.Drawing.Size(507, 85);
 			this.label6.TabIndex = 10;
 			this.label6.Text = "Circle inversion";
 			this.label6.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -739,7 +746,7 @@
 			this.trackBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.trackBar1.AutoSize = false;
 			this.trackBar1.LargeChange = 50;
-			this.trackBar1.Location = new System.Drawing.Point(0, 200);
+			this.trackBar1.Location = new System.Drawing.Point(0, 194);
 			this.trackBar1.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
 			this.trackBar1.Maximum = 1000;
 			this.trackBar1.Minimum = 1;
@@ -762,7 +769,7 @@
 			this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
 			this.button2.ForeColor = System.Drawing.Color.Black;
-			this.button2.Location = new System.Drawing.Point(0, 119);
+			this.button2.Location = new System.Drawing.Point(-3, 108);
 			this.button2.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(507, 72);
@@ -777,10 +784,10 @@
 			this.panel_crooked.Controls.Add(this.label9);
 			this.panel_crooked.Controls.Add(this.trackBar2);
 			this.panel_crooked.Controls.Add(this.label10);
-			this.panel_crooked.Location = new System.Drawing.Point(1232, 105);
+			this.panel_crooked.Location = new System.Drawing.Point(1116, 99);
 			this.panel_crooked.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
 			this.panel_crooked.Name = "panel_crooked";
-			this.panel_crooked.Size = new System.Drawing.Size(507, 1354);
+			this.panel_crooked.Size = new System.Drawing.Size(507, 542);
 			this.panel_crooked.TabIndex = 14;
 			// 
 			// numericUpDown8
@@ -855,19 +862,46 @@
 			this.label10.Text = "Coefficient:";
 			this.label10.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
 			// 
-			// roundedCrossToolStripMenuItem
+			// pictureBox1
 			// 
-			this.roundedCrossToolStripMenuItem.Name = "roundedCrossToolStripMenuItem";
-			this.roundedCrossToolStripMenuItem.Size = new System.Drawing.Size(357, 46);
-			this.roundedCrossToolStripMenuItem.Text = "Rounded Cross";
-			this.roundedCrossToolStripMenuItem.Click += new System.EventHandler(this.roundedCrossToolStripMenuItem_Click);
+			this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.pictureBox1.BackColor = System.Drawing.Color.White;
+			this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.pictureBox1.Location = new System.Drawing.Point(560, 81);
+			this.pictureBox1.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+			this.pictureBox1.MinimumSize = new System.Drawing.Size(260, 233);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(1771, 1396);
+			this.pictureBox1.TabIndex = 0;
+			this.pictureBox1.TabStop = false;
+			this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+			// 
+			// button3
+			// 
+			this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(159)))), ((int)(((byte)(80)))));
+			this.button3.FlatAppearance.BorderSize = 0;
+			this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(100)))), ((int)(((byte)(126)))));
+			this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(194)))), ((int)(((byte)(97)))));
+			this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+			this.button3.ForeColor = System.Drawing.Color.Black;
+			this.button3.Location = new System.Drawing.Point(0, 238);
+			this.button3.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(507, 72);
+			this.button3.TabIndex = 18;
+			this.button3.Text = "SlowDraw";
+			this.button3.UseVisualStyleBackColor = false;
+			this.button3.Click += new System.EventHandler(this.slowDrawButton_Click);
 			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(43)))));
-			this.ClientSize = new System.Drawing.Size(3824, 1772);
+			this.ClientSize = new System.Drawing.Size(2348, 1493);
 			this.Controls.Add(this.panel_recursion);
 			this.Controls.Add(this.panel_apoll);
 			this.Controls.Add(this.panel_crooked);
@@ -885,7 +919,6 @@
 			this.Name = "Form1";
 			this.Text = "Fractals";
 			this.ResizeEnd += new System.EventHandler(this.button1_Click);
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
@@ -906,14 +939,13 @@
 			this.panel_crooked.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.MenuStrip menuStrip1;
@@ -957,7 +989,6 @@
         private System.Windows.Forms.Panel panel_recursion;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.NumericUpDown numericUpDown7;
-        private System.Windows.Forms.ToolStripMenuItem recursionToolStripMenuItem;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
@@ -969,6 +1000,9 @@
         private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.ToolStripMenuItem wBToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem roundedCrossToolStripMenuItem;
+		private System.Windows.Forms.Button slowDrawButton;
+		private System.Windows.Forms.PictureBox pictureBox1;
+		private System.Windows.Forms.Button button3;
 	}
 }
 

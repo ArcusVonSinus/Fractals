@@ -15,10 +15,11 @@ namespace Fraktaly_2._0
         Bitmap bmp;
         int hloubka = 0;
         int width = 0, height = 0;
-        public Recursion()
+        public Recursion(PictureBox pb)
         {
             L = Math.PI / 3f;
             P = Math.PI / 3f;
+			this.pb = pb;
         }
         void drawRek(int dept, bool pravotoc)
         {
@@ -68,7 +69,7 @@ namespace Fraktaly_2._0
 
             }
         }
-        public override void vykresli(PictureBox pb, int hloubka, string pattern)
+        public override void vykresli(int hloubka, string pattern)
         {
             if (this.hloubka != hloubka || width != pb.Width || height != pb.Height)
             {

@@ -73,11 +73,12 @@ namespace Fraktaly_2._0
         double rad = 1;
         Bitmap bmp;
         Queue<kruznice> q1, q2, q3;
-        public Apoll()
+        public Apoll(PictureBox pb)
         {
             q1 = new Queue<kruznice>();
             q2 = new Queue<kruznice>();
             q3 = new Queue<kruznice>();
+			this.pb = pb;
         }
         void DrawCircle(kruznice k)
         {
@@ -118,6 +119,11 @@ namespace Fraktaly_2._0
                 SetPixel2(x0 + y, y0 - x);
                 SetPixel2(x0 - y, y0 - x);
             }
+			if (slowDraw)
+			{
+				//pb.Image = bmp;
+				pb.Refresh();
+			}
         }
         void ApIn(double x1, double y1, double a, double x2, double y2, double b, double x3, double y3, double c)
         {
@@ -140,8 +146,11 @@ namespace Fraktaly_2._0
 
             DrawCircle(new kruznice(x, y, r + 0.5));
             DrawCircle(new kruznice(x, height - y, r + 0.5));
-
-            q1.Enqueue(new kruznice(x1, y1, a));
+			/*
+			if (slowDraw)
+				pb.Refresh();
+				*/
+			q1.Enqueue(new kruznice(x1, y1, a));
             q1.Enqueue(new kruznice(x1, y1, a));
             q1.Enqueue(new kruznice(x2, y2, b));
 
@@ -177,7 +186,10 @@ namespace Fraktaly_2._0
 
             DrawCircle(new kruznice(x, y, r + 0.5));
             DrawCircle(new kruznice(x, height - y, r + 0.5));
-
+			/*
+			if (slowDraw)
+				pb.Refresh();
+				*/
             q1.Enqueue(new kruznice(x1, y1, a));
             q1.Enqueue(new kruznice(x1, y1, a));
             q1.Enqueue(new kruznice(x2, y2, b));
@@ -190,20 +202,20 @@ namespace Fraktaly_2._0
             q3.Enqueue(new kruznice(x, y, r));
             q3.Enqueue(new kruznice(x, y, r));
         }
-        public override void vykresli(PictureBox pb, int kruznic)
+        public override void vykresli(int kruznic)
         {
-            if (target == 0 || height != pb.Height || width != pb.Width)
+            if (target == 0 || height != pb.Height || width != pb.Width || slowDraw)
             {
                 width = pb.Width;
                 height = pb.Height;
                 bmp = new Bitmap(pb.Width, pb.Height);
-                using (Graphics gfx = Graphics.FromImage(bmp))
+				using (Graphics gfx = Graphics.FromImage(bmp))
                 using (SolidBrush brush = new SolidBrush(Barvy.pozadi))
                 {
                     gfx.FillRectangle(brush, 0, 0, pb.Width, pb.Height);
                 }
-
-                if (width < height)
+				pb.Image = bmp;
+				if (width < height)
                 {
                     rad = width - 30;
                 }
@@ -227,10 +239,9 @@ namespace Fraktaly_2._0
                 
                 pocet = 3;
             }
-            if (target != kruznic)
+            if (pocet != kruznic)
             {
-                target = kruznic;
-                while (pocet < target)
+                while (pocet < kruznic)
                 {
                     
                     if (q1.Peek().r >= 2 * rad - 1)
@@ -254,7 +265,7 @@ namespace Fraktaly_2._0
                 
                 
             }
-            pb.Image = bmp;
+            
             pb.Refresh();
         }
     }

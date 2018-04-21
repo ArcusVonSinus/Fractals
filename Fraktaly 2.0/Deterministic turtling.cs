@@ -11,14 +11,15 @@ using System.Windows.Forms;
 namespace Fraktaly_2._0
 {
     class Koch : Turtle
-    {
+    {	
         Bitmap bmp;
         int depth = 0;
         int width = 0, height = 0;
-        public Koch()
+        public Koch(PictureBox pb)
         {
             L = Math.PI / 3f;
             P = 2f * Math.PI / 3f;
+			this.pb = pb;
         }
         void drawRek(int dive)
         {
@@ -51,9 +52,9 @@ namespace Fraktaly_2._0
             }
 
         }
-        public override void vykresli(PictureBox pb, int hloubka)
+        public override void vykresli(int hloubka)
         {
-            if (depth != hloubka || width != pb.Width || height != pb.Height)
+            if (depth != hloubka || width != pb.Width || height != pb.Height || slowDraw)
             {
                 depth = hloubka;
                 width = pb.Width;
@@ -111,10 +112,11 @@ namespace Fraktaly_2._0
         Bitmap bmp;
         int depth = 0;
         int width = 0, height = 0;
-        public Hilbert()
+        public Hilbert(PictureBox pb)
         {
             L = Math.PI / 3f;
             P = 2f * Math.PI / 3f;
+			this.pb = pb;
         }
         float t1 = (float)(3f * Math.PI / 2f);
         float t3 = (float)(Math.PI / 2f);
@@ -171,9 +173,9 @@ namespace Fraktaly_2._0
             smer = _smerbckp;
 
         }
-        public override void vykresli(PictureBox pb, int hloubka)
+        public override void vykresli(int hloubka)
         {
-            if (depth != hloubka || width != pb.Width || height != pb.Height)
+            if (depth != hloubka || width != pb.Width || height != pb.Height || slowDraw)
             {
                 depth = hloubka;
                 width = pb.Width;
@@ -213,10 +215,11 @@ namespace Fraktaly_2._0
 		int depth = 0;
 		int width = 0, height = 0;
 
-		public Cross()
+		public Cross(PictureBox pb)
 		{
 			P = 3f * Math.PI / 2f;
 			L = P;
+			this.pb = pb;
 		}
 		void drawRek(int dept, int toc)
 		{
@@ -246,9 +249,9 @@ namespace Fraktaly_2._0
 				}
 			}
 		}
-		public override void vykresli(PictureBox pb, int hloubka)
+		public override void vykresli(int hloubka)
 		{
-			if (depth != hloubka || width != pb.Width || height != pb.Height)
+			if (depth != hloubka || width != pb.Width || height != pb.Height || slowDraw)
 			{
 				depth = hloubka;
 				width = pb.Width;
@@ -355,10 +358,11 @@ namespace Fraktaly_2._0
 			poloha.X = temp2.X;
 			poloha.Y = temp2.Y;
 		}
-		public CrossRound()
+		public CrossRound(PictureBox pb)
 		{
 			P = 3f * Math.PI / 2f;
 			L = P;
+			this.pb = pb;
 		}
 		void drawRek(int dept, int toc)
 		{
@@ -393,9 +397,9 @@ namespace Fraktaly_2._0
 				}
 			}
 		}
-		public override void vykresli(PictureBox pb, int hloubka)
+		public override void vykresli(int hloubka)
 		{
-			if (depth != hloubka || width != pb.Width || height != pb.Height)
+			if (depth != hloubka || width != pb.Width || height != pb.Height || slowDraw)
 			{
 				depth = hloubka;
 				width = pb.Width;
@@ -441,10 +445,11 @@ namespace Fraktaly_2._0
         bool sikmo = true;
         int kamCur = 0;
         int width = 0, height = 0;
-        public SierCurve()
+        public SierCurve(PictureBox pb)
         {
             L = Math.PI / 4f;
             P = Math.PI / 2f;
+			this.pb = pb;
         }
         void KrokCur()
         {
@@ -493,9 +498,9 @@ namespace Fraktaly_2._0
 
             }
         }
-        public override void vykresli(PictureBox pb, int hloubka)
+        public override void vykresli(int hloubka)
         {
-            if (kamCur != hloubka || width != pb.Width || height != pb.Height)
+            if (kamCur != hloubka || width != pb.Width || height != pb.Height || slowDraw)
             {
                 kamCur = hloubka;
                 width = pb.Width;
@@ -533,13 +538,13 @@ namespace Fraktaly_2._0
         Bitmap bmp;
         int depth = 0;
         int width = 0, height = 0;
-        public ZMatrix()
+        public ZMatrix(PictureBox pb)
         {
-
+			this.pb = pb;
         }
-        public override void vykresli(PictureBox pb, int hloubka)
+        public override void vykresli(int hloubka)
         {
-            if (depth != hloubka || width != pb.Width || height != pb.Height)
+            if (depth != hloubka || width != pb.Width || height != pb.Height || slowDraw)
             {
                 depth = hloubka;
                 width = pb.Width;
@@ -601,10 +606,11 @@ namespace Fraktaly_2._0
         Bitmap bmp;        
         int hloubka = 0;
         int width = 0, height = 0;
-        public Hexacurve()
+        public Hexacurve(PictureBox pb)
         {
             L = Math.PI / 3f;
             P = Math.PI / 3f;
+			this.pb = pb;
         }
         void drawRek(int dept, bool ven)
         {
@@ -654,9 +660,9 @@ namespace Fraktaly_2._0
 
             }
         }
-        public override void vykresli(PictureBox pb, int hloubka)
+        public override void vykresli(int hloubka)
         {
-            if (this.hloubka != hloubka || width != pb.Width || height != pb.Height)
+            if (this.hloubka != hloubka || width != pb.Width || height != pb.Height || slowDraw)
             {
                 this.hloubka = hloubka;
                 width = pb.Width;
@@ -697,10 +703,11 @@ namespace Fraktaly_2._0
         Bitmap bmp;
         int hloubka = 0;
         int width = 0, height = 0;
-        public Hexacurve2()
+        public Hexacurve2(PictureBox pb)
         {
             L = Math.PI / 3f;
             P = Math.PI / 3f;
+			this.pb = pb;
         }
         void drawRek(int dept, bool pravotoc)
         {
@@ -750,9 +757,9 @@ namespace Fraktaly_2._0
 
             }
         }
-        public override void vykresli(PictureBox pb, int hloubka)
+        public override void vykresli(int hloubka)
         {
-            if (this.hloubka != hloubka || width != pb.Width || height != pb.Height)
+            if (this.hloubka != hloubka || width != pb.Width || height != pb.Height || slowDraw)
             {
                 this.hloubka = hloubka;
                 width = pb.Width;

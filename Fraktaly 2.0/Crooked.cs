@@ -71,7 +71,7 @@ namespace Fraktaly_2._0
             double l = 1-k;
             return new PointF((float)(k*a.X + l*b.X), (float)(k*a.Y + l*b.Y));
         }
-        public override void vykresli(PictureBox pb, double k, int tarDepth)
+        public override void vykresli(double k, int tarDepth)
         {                       
             bmp = new Bitmap(pb.Width, pb.Height);
             pb.Image = bmp;
