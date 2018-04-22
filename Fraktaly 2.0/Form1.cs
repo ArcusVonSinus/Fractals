@@ -148,6 +148,9 @@ namespace Fraktaly_2._0
 
 		}
 
+
+        
+
         private void button1_Click(object sender, EventArgs e)
         {
             invCenter = new Point(pictureBox1.Width / 2, pictureBox1.Height / 2);
@@ -649,7 +652,6 @@ namespace Fraktaly_2._0
 			if(numericUpDown4.Value>numericUpDown4.Minimum)
 				numericUpDown4.Value--;
 			button1_Click(null, null);
-			vykreslenyFraktal.slowDraw = false;
 		}
 
 		private void saveImageToolStripMenuItem_Click(object sender, EventArgs e)
@@ -694,10 +696,14 @@ namespace Fraktaly_2._0
             get { return System.Drawing.ColorTranslator.FromHtml("#da3939"); }
         }        
     }
+
+    
+
     public class Fractal
     {
 		public PictureBox pb;
 		public bool slowDraw = false;
+        public Thread vykreslovac;
         public virtual void vykresli(int n) { }
         public virtual void vykresli(int n,string pat) { }
         public virtual void vykresli(int n, int m){}
@@ -719,8 +725,9 @@ namespace Fraktaly_2._0
                 x += addx;
                 y += addy;
 				if(slowDraw && i%10==0 && pb!=null)
-				{ 
-						pb.Refresh();
+				{
+                    //pb.Refresh();
+                    refreshPictureBox();
 				}
             }
         }
@@ -732,7 +739,61 @@ namespace Fraktaly_2._0
         {
             DrawLine(bmp, a.X, a.Y, b.X, b.Y);
         }
-       
+
+        delegate void refreshPictureBoxDel();
+        public void refreshPictureBox()
+        {
+            if (pb.InvokeRequired)
+            {
+                pb.Invoke(new refreshPictureBoxDel(refreshPictureBox));
+            }
+            else
+            {
+                pb.Refresh();
+            }
+        }
+
+        delegate void setPictureDel(Bitmap bm);
+        public void setPicture(Bitmap bm)
+        {
+            if (pb.InvokeRequired)
+            {
+                //setPictureDel d = new setPictureDel(setPicture);
+                //pb.BeginInvoke(new setPictureDel(setPicture),  bm );
+                pb.Invoke(new setPictureDel(setPicture), bm);
+                //Invoke(d, new object[] { bm });
+            }
+            else
+            {
+                pb.Image = bm;
+                pb.Refresh();
+            }
+        }
+
+        delegate void paintBackgroundDel();
+        public void paintBackground()
+        {
+            if (pb.InvokeRequired)
+            {
+                //setPictureDel d = new setPictureDel(setPicture);
+                pb.Invoke(new paintBackgroundDel(paintBackground));
+
+                //Invoke(d, new object[] { bm });
+            }
+            else
+            {
+        
+                using (Graphics gfx = Graphics.FromImage(pb.Image))
+                using (SolidBrush brush = new SolidBrush(Barvy.pozadi))
+                {
+                    gfx.FillRectangle(brush, 0, 0, pb.Width, pb.Height);
+                }
+                pb.Refresh();
+            }
+        }
+
+
+
     }
    
 }

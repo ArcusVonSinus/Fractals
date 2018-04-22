@@ -141,6 +141,7 @@ namespace Fraktaly_2._0
                 pb.Image = bmp;                
             }*/
             pb.Refresh();
+            slowDraw = false;
         }
     }
 }

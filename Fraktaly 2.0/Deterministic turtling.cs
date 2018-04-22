@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Fraktaly_2._0
 {
@@ -105,6 +106,7 @@ namespace Fraktaly_2._0
                 pb.Image = bmp;
             }
             pb.Refresh();
+            slowDraw = false;
         }
     }
     class Hilbert : Turtle
@@ -207,6 +209,7 @@ namespace Fraktaly_2._0
                 pb.Image = bmp;
             }
             pb.Refresh();
+            slowDraw = false;
         }
     }
 	class Cross : Turtle
@@ -214,7 +217,7 @@ namespace Fraktaly_2._0
 		Bitmap bmp;
 		int depth = 0;
 		int width = 0, height = 0;
-
+		int hloubka;
 		public Cross(PictureBox pb)
 		{
 			P = 3f * Math.PI / 2f;
@@ -251,6 +254,12 @@ namespace Fraktaly_2._0
 		}
 		public override void vykresli(int hloubka)
 		{
+            this.hloubka = hloubka;
+            vykreslovac = new Thread(vykresliThread);
+            vykreslovac.Start();
+		}
+		public void vykresliThread()
+		{
 			if (depth != hloubka || width != pb.Width || height != pb.Height || slowDraw)
 			{
 				depth = hloubka;
@@ -258,12 +267,10 @@ namespace Fraktaly_2._0
 				height = pb.Height;
 
 				bmp = new Bitmap(pb.Width, pb.Height);
-				pb.Image = bmp;
-				using (Graphics gfx = Graphics.FromImage(bmp))
-				using (SolidBrush brush = new SolidBrush(Barvy.pozadi))
-				{
-					gfx.FillRectangle(brush, 0, 0, pb.Width, pb.Height);
-				}
+                //pb.Image = bmp;
+                setPicture(bmp);
+                paintBackground();
+				
 				smer = Math.PI;
 				double sirka;
 				double coef = Math.Pow(2f, depth + 1);
@@ -285,11 +292,13 @@ namespace Fraktaly_2._0
 			}
 			else
 			{
-				pb.Image = bmp;
-			}
-			pb.Refresh();
-
-		}
+                //pb.Image = bmp;
+                setPicture(bmp);
+            }
+            //pb.Refresh();
+            refreshPictureBox();
+            slowDraw = false;
+        }
 	}
 	class CrossRound : Turtle
 	{
@@ -325,7 +334,8 @@ namespace Fraktaly_2._0
 				int y = (int)(y0 + (x1 - x0) * Math.Sin(temp) + (y1 - y0) * Math.Cos(temp));
 				SetPixel2(x, y);
 			}
-			
+            if (slowDraw)
+                refreshPictureBox();
 		}
 		void krokRounded(Bitmap bmp,bool doleva)
 		{
@@ -436,8 +446,8 @@ namespace Fraktaly_2._0
 				pb.Image = bmp;
 			}
 			pb.Refresh();
-
-		}
+            slowDraw = false;
+        }
 	}
 	class SierCurve : Turtle
     {
@@ -531,6 +541,7 @@ namespace Fraktaly_2._0
                 DrawCur(0, 2);
                 DrawCur(0, 2);
             }
+            slowDraw = false;
         }
     }
     class ZMatrix : Fractal
@@ -599,6 +610,7 @@ namespace Fraktaly_2._0
                 pb.Image = bmp;
             }
             pb.Refresh();
+            slowDraw = false;
         }
     }
     class Hexacurve : Turtle
@@ -696,6 +708,7 @@ namespace Fraktaly_2._0
                 poloha.Y -= (float)(0.5 * sirka);
                 drawRek(0, true);
             }
+            slowDraw = false;
         }
     }
     class Hexacurve2 : Turtle
@@ -790,6 +803,7 @@ namespace Fraktaly_2._0
 
                 drawRek(0, true);
             }
+                slowDraw = false;
         }
     }
 }

@@ -267,6 +267,7 @@ namespace Fraktaly_2._0
             }
             
             pb.Refresh();
+            slowDraw = false;
         }
     }
 }
